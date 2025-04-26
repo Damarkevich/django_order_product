@@ -1,9 +1,9 @@
-import uuid
+from core.models import ApiIdField, BaseModel
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class Contact(models.Model):
+class Contact(BaseModel):
     phone_number = models.CharField(max_length=15)
     postal_code = models.CharField(max_length=10)
     address_line_1 = models.CharField(max_length=255)
@@ -16,8 +16,7 @@ class Contact(models.Model):
         return f"{self.id} - {self.phone_number} - {self.postal_code} - {self.city} - {self.state} - {self.country}"
 
 
-class Company(models.Model):
-    api_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+class Company(BaseModel):
     name = models.CharField(max_length=255)
     contact = models.OneToOneField(
         Contact,
@@ -32,7 +31,7 @@ class Company(models.Model):
 
 
 class User(AbstractUser):
-    api_id = models.UUIDField(default=uuid.uuid4(), editable=False, unique=True)
+    api_id = ApiIdField()
     contact = models.OneToOneField(
         Contact, on_delete=models.SET_NULL, related_name="user", null=True, blank=True
     )
