@@ -34,8 +34,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "rest_framework_simplejwt",
-    "djoser",
+    "rest_framework.authtoken",
+    "dj_rest_auth",
     "drf_spectacular",
     "accounts.apps.AccountsConfig",
 ]
@@ -123,3 +123,16 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "accounts.User"
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Django Order-Product API",
+    "DESCRIPTION": "API documentation for the Django Order-Product project.",
+    "VERSION": "0.1.0",
+}
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:8000",
+]
