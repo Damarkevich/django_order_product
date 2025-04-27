@@ -10,7 +10,7 @@ admin.site.unregister(Group)
 @admin.register(User)
 class UserAdmin(UserAdmin):
     fieldsets = (
-        (None, {"fields": ("username", "password")}),
+        (None, {"fields": ("id", "api_id", "username", "password")}),
         (
             _("Personal info"),
             {"fields": ("first_name", "last_name", "email", "company", "contact")},
@@ -41,13 +41,21 @@ class UserAdmin(UserAdmin):
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "contact")
+    list_display = ("id", "api_id", "name", "contact")
     search_fields = ("name",)
     ordering = ("name",)
 
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ("id", "phone_number", "postal_code", "city", "state", "country")
+    list_display = (
+        "id",
+        "api_id",
+        "phone_number",
+        "postal_code",
+        "city",
+        "state",
+        "country",
+    )
     search_fields = ("phone_number", "postal_code", "city", "state", "country")
     ordering = ("city",)

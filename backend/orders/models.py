@@ -49,8 +49,8 @@ class Order(BaseModel):
         return f"{self.id} - {self.added_at.strftime('%Y-%m-%d')}"
 
     @admin.display(description="Total Price")
-    def total_price(self) -> int:
-        return sum(item.total_price() for item in self.items.all())
+    def get_total_price(self) -> int:
+        return sum(item.get_total_price() for item in self.items.all())
 
 
 class OrderItem(BaseModel):
@@ -72,5 +72,5 @@ class OrderItem(BaseModel):
         return f"{self.id} - {self.product.name} (x{self.quantity})"
 
     @admin.display(description="Total Price")
-    def total_price(self) -> int:
+    def get_total_price(self) -> int:
         return self.product.price * self.quantity

@@ -4,13 +4,13 @@ from django.db import models
 
 
 class Contact(BaseModel):
-    phone_number = models.CharField(max_length=15)
-    postal_code = models.CharField(max_length=10)
-    address_line_1 = models.CharField(max_length=255)
-    address_line_2 = models.CharField(max_length=255, blank=True, null=True)
-    city = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=15, default="", blank=True)
+    postal_code = models.CharField(max_length=10, default="", blank=True)
+    address_line_1 = models.CharField(max_length=255, blank=True)
+    address_line_2 = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=100, blank=True)
+    state = models.CharField(max_length=100, blank=True)
+    country = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return f"{self.id} - {self.phone_number} - {self.postal_code} - {self.city} - {self.state} - {self.country}"

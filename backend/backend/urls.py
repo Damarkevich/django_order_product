@@ -5,10 +5,12 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
+from debug_toolbar.toolbar import debug_toolbar_urls
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("auth/", include("dj_rest_auth.urls")),
+    path("api/", include("api.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/schema/swagger-ui/",
@@ -20,4 +22,4 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
-]
+] + debug_toolbar_urls()
