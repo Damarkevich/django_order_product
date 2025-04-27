@@ -2,6 +2,17 @@
 
 A simple Django application for managing orders and products.
 
+Libraries used:
+    - django 5.2
+    - djangorestframework 3.16.0
+    - djangorestframework-simplejwt 5.5.0
+    - python-dotenv 1.1.0
+    - django-filter 25.1
+    - drf-standardized-errors 0.14.1
+    - drf-spectacular 0.28.0
+    - dj-rest-auth 7.0.1
+    - django-debug-toolbar 5.1.0
+
 ## Features
 
 - **User Management**: Custom user model with support for companies and contacts.
